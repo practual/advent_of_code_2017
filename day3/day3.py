@@ -70,8 +70,8 @@ def calculate_rotating_sum_greater_than_threshold(threshold):
         val = _sum_of_neighbours(plane, coords)
         plane[coords[0]][coords[1]] = val
         if position == _max_position_for_ring(_ring_number_from_position(position)):
-            coords = coords[0] + 1, coords[1]
-            step = 0, 1
+            coords = coords[0] + step[0], coords[1] + step[1]
+            step = _turn_corner(step)
         elif _is_corner(position):
             step = _turn_corner(step)
             coords = coords[0] + step[0], coords[1] + step[1]
