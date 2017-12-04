@@ -19,17 +19,10 @@ def check_valid_passphrases_part_1(passphrases):
 def check_valid_passphrases_part_2(passphrases):
     num_valid = 0
     for passphrase in passphrases.split('\n'):
-        words = passphrase.split()
+        words = [''.join(sorted(word)) for word in passphrase.split()]
         if not words:
             continue
-        seen = set()
-        for word in words:
-            sorted_chars = tuple(sorted(list(word)))
-            if sorted_chars in seen:
-                break
-            seen.add(sorted_chars)
-        else:
-            num_valid += 1
+        num_valid += len(set(words)) == len(words)
     return num_valid
 
 
