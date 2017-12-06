@@ -16,6 +16,10 @@ def checksum_part_1(spreadsheet):
 
 
 def checksum_part_2(spreadsheet):
+    """
+    Tried to do this in something other than O(n^2) (i.e. comparing all pairs) but instead
+    I think we've got something that is dependent on max(N)...
+    """
     checksum = 0
     for row in spreadsheet.split('\n'):
         sorted_cells = sorted([int(cell) for cell in row.split('\t') if cell], key=int)
