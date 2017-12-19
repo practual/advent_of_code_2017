@@ -46,8 +46,8 @@ def run():
         pipe_strings = file.read().strip().split('\n')
 
     pipes = {}
+    pattern = re.compile('([0-9]+) <->(( [0-9]+,?)+)')
     for pipe in pipe_strings:
-        pattern = re.compile('([0-9]+) <->(( [0-9]+,?)+)')
         match = pattern.match(pipe)
         parent = int(match.group(1))
         children = [int(child.strip()) for child in match.group(2).split(',')]
