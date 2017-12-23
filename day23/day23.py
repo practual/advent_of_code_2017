@@ -84,18 +84,14 @@ def run():
     """
 
     # Sieve to find the primes not greater than sqrt(122700)
-    root = math.floor(math.sqrt(122700))
-    primes = set(range(2, root + 1))
-    for i in range(2, root + 1):
+    root = math.floor(math.sqrt(122700)) + 1  # Add 1 to make ranges easier.
+    primes = set(range(2, root))
+    for i in range(2, root):
         if i not in primes:
             continue
-        j = i ** 2
-        while j <= root:
-            try:
+        for j in range(i ** 2, root, i):
+            if j in primes:
                 primes.remove(j)
-            except KeyError:
-                pass
-            j += i
 
     # Now use these primes to find non-primes in the range.
     non_primes = 0
