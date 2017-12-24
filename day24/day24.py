@@ -24,12 +24,13 @@ def get_chains(components, left):
         chain, max_subchain_strength, longest_subchain, longest_subchain_strength = get_chains(components_copy, get_right(component, left))
         longest_subchain += 1
         longest_subchain_strength += sum(component)
+        max_subchain_strength += sum(component)
         if longest_subchain > longest:
             longest = longest_subchain
             strength_for_longest = longest_subchain_strength
         elif longest_subchain == longest:
             strength_for_longest = max(strength_for_longest, longest_subchain_strength)
-        max_strength = max(max_strength, sum(component) + max_subchain_strength)
+        max_strength = max(max_strength, max_subchain_strength)
         chains[component] = chain
     return chains, max_strength, longest, strength_for_longest
 
